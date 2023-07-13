@@ -1,0 +1,32 @@
+type Query {
+    users(emailFilter: String): [User]
+}
+
+type Mutation {
+    addUser(input: UserInput): User
+    addUsers(input: [UserInput!]!): Boolean
+}
+
+input UserInput {
+    firstname: String
+    lastname: String
+    email: String
+    password: String
+}
+
+type User {
+    id: ID
+    firstname: String
+    lastname: String
+    email: String
+    password: String
+    isEnable: Boolean
+}
+
+enum UserRoleEnum {
+    ADMIN
+    ACCOUNTANT
+    STAFF
+    USER
+    GUEST
+}
