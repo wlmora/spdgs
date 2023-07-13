@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.business.security.generated.DgsConstants.MUTATION;
 @DgsComponent
 @RequiredArgsConstructor
 public class UsersDatafetcher {
@@ -24,7 +25,7 @@ public class UsersDatafetcher {
                 .collect(Collectors.toList());
     }
 
-    @DgsData(parentType = "Mutation", field = "addUser")
+    @DgsData(parentType = MUTATION.TYPE_NAME, field = MUTATION.AddUser)
     public User addUser(@InputArgument("input") UserInput userInput) {
         return userRepository.save(
             User.builder()
@@ -35,7 +36,7 @@ public class UsersDatafetcher {
                 .isEnable(false)
                 .build());
     }
-    @DgsData(parentType = "Mutation", field = "addUsers")
+    @DgsData(parentType = MUTATION.TYPE_NAME, field = MUTATION.AddUsers)
     public Boolean addUsers(@InputArgument("input") List<UserInput> userInput) {
 
         List<User> users = new ArrayList<>();
